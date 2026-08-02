@@ -1,0 +1,35 @@
+{
+  "name": "Clixy community plugins",
+  "plugins": [
+    {
+      "clixyPlugin": 1,
+      "id": "com.clixy.writing-toolkit",
+      "name": "Writing Toolkit",
+      "version": "1.0.0",
+      "author": "Clixy",
+      "description": "Grammar, clarity, tone, summarize, title case, and bulletize actions.",
+      "config": [
+        {
+          "key": "tone",
+          "label": "Tone",
+          "type": "select",
+          "default": "Professional",
+          "options": [
+            "Professional",
+            "Friendly",
+            "Confident",
+            "Casual",
+            "Direct"
+          ]
+        },
+        {
+          "key": "summaryBullets",
+          "label": "Summary bullets",
+          "type": "number",
+          "default": 5
+        }
+      ],
+      "code": "// Writing Toolkit for Clixy - readable source.\n//\n// This is the plugin code. The installable artifact is writing-toolkit.clixy.json\n// (this code embedded in a package). To install: open Clixy Settings, Plugins,\n// Install, and paste the contents of the .json file.\n//\n// The plugin runs in a sandbox: no network, no files, no DOM, and it never sees\n// your API key. AI actions go through clixy.ai, which runs the completion using\n// the model and key set in Clixy Settings.\n\nvar SMALL_WORDS = new Set([\n  'a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor',\n  'of', 'on', 'or', 'per', 'the', 'to', 'via', 'vs',\n]);\n\nfunction titleCaseLine(line) {\n  var seenWord = false;\n  return line\n    .split(/(\\s+)/)\n    .map(function (token) {\n      if (token === '' || /^\\s+$/.test(token)) return token;\n      var lower = token.toLowerCase();\n      var isFirst = !seenWord;\n      seenWord = true;\n      if (!isFirst && SMALL_WORDS.has(lower)) return lower;\n      return lower.charAt(0).toUpperCase() + lower.slice(1);\n    })\n    .join('');\n}\n\nfunction titleCase(text) {\n  return text.split('\\n').map(titleCaseLine).join('\\n');\n}\n\nfunction bulletize(text) {\n  return text\n    .split('\\n')\n    .map(function (line) {\n      var trimmed = line.trim();\n      if (!trimmed) return '';\n      if (/^([-*+]|\\d+\\.)\\s/.test(trimmed)) return line; // already a list item\n      return '- ' + trimmed;\n    })\n    .join('\\n');\n}\n\n// AI actions -------------------------------------------------------------\n\nclixy.registerAction({\n  id: 'grammar',\n  label: 'Fix grammar',\n  description: 'Correct grammar, spelling, and punctuation, keeping meaning and Markdown',\n  run: function (text) {\n    return clixy.ai(\n      'Correct the grammar, spelling, and punctuation in the following Markdown. ' +\n        'Preserve the meaning, the voice, and all Markdown formatting. ' +\n        'Return only the corrected text, with no preamble.\\n\\n' +\n        text\n    );\n  },\n});\n\nclixy.registerAction({\n  id: 'clarity',\n  label: 'Improve clarity',\n  description: 'Rewrite to be clearer and more concise',\n  run: function (text) {\n    return clixy.ai(\n      'Rewrite the following Markdown to be clearer and more concise without losing ' +\n        'meaning. Keep the Markdown formatting. Return only the rewritten text.\\n\\n' +\n        text\n    );\n  },\n});\n\nclixy.registerAction({\n  id: 'tone',\n  label: 'Change tone',\n  description: 'Rewrite in the tone set in this plugin config',\n  run: function (text) {\n    var tone = String(clixy.config.tone || 'Professional');\n    return clixy.ai(\n      'Rewrite the following Markdown in a ' +\n        tone.toLowerCase() +\n        ' tone. Preserve meaning and Markdown formatting. Return only the rewritten text.\\n\\n' +\n        text\n    );\n  },\n});\n\nclixy.registerAction({\n  id: 'summarize',\n  label: 'Summarize',\n  description: 'Summarize as bullet points (count set in config)',\n  run: function (text) {\n    var count = Number(clixy.config.summaryBullets) || 5;\n    return clixy.ai(\n      'Summarize the following text as at most ' +\n        count +\n        ' concise Markdown bullet points. Return only the bullet list.\\n\\n' +\n        text\n    );\n  },\n});\n\n// Local actions (no AI, no network) --------------------------------------\n\nclixy.registerAction({\n  id: 'titlecase',\n  label: 'Title case',\n  description: 'Capitalize the text as a title',\n  run: function (text) {\n    return titleCase(text);\n  },\n});\n\nclixy.registerAction({\n  id: 'bulletize',\n  label: 'Bulletize lines',\n  description: 'Turn each non-empty line into a Markdown bullet',\n  run: function (text) {\n    return bulletize(text);\n  },\n});\n"
+    }
+  ]
+}
