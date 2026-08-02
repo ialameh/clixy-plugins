@@ -1,0 +1,9 @@
+{
+  "clixyPlugin": 1,
+  "id": "com.clixy.ai-chat",
+  "name": "AI Chat",
+  "version": "1.0.0",
+  "author": "Clixy",
+  "description": "Send the selection to the AI backend as-is, like a chat prompt, and insert the reply.",
+  "code": "// AI Chat for Clixy - readable source.\n//\n// Sends the selected text (or the whole document) to the AI backend exactly as\n// written, like typing a message in a chat, and inserts the reply. There is no\n// prompt wrapping, so the backend you selected in Settings decides how to answer.\n// With Moonnox selected, your agent handles the request; with OpenAI selected,\n// the model does.\n//\n// The installable artifact is ai-chat.clixy.json.\n\nclixy.registerAction({\n  id: 'ask',\n  label: 'Send to AI',\n  description: 'Send the selected text to the AI backend as-is and insert the reply',\n  run: function (text) {\n    return clixy.ai(text);\n  },\n});\n"
+}

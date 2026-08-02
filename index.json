@@ -5,6 +5,15 @@
   "spec": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/authoring-spec.md",
   "plugins": [
     {
+      "id": "com.clixy.ai-chat",
+      "name": "AI Chat",
+      "version": "1.0.0",
+      "author": "Clixy",
+      "description": "Send the selection to the AI backend as-is, like a chat prompt, and insert the reply.",
+      "package": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/plugins/ai-chat.clixy.json",
+      "docs": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/plugins/com.clixy.ai-chat.md"
+    },
+    {
       "id": "com.clixy.writing-toolkit",
       "name": "Writing Toolkit",
       "version": "1.0.0",
