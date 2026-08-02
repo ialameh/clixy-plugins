@@ -21,10 +21,24 @@ Settings.
 
 ## What is here
 
-- `registry.json`: the registry document Clixy reads. It lists every plugin as a
-  full package, so Clixy fetches it in one request.
-- `plugins/`: the individual plugin packages, one JSON file each. `registry.json`
-  is built from these.
+- `registry.json`: the feed Clixy reads. It lists every plugin as a full package
+  (code inline), so Clixy fetches everything in one request.
+- `index.json`: a lightweight catalog for browsing and tooling. Per plugin it
+  carries the metadata plus raw URLs to the package file and its docs page, with
+  no code.
+- `plugins/`: the individual plugin packages, one JSON file each.
+- `docs/`: `authoring-guide.md` (how to write a plugin), `authoring-spec.md`
+  (paste into an AI assistant to have it write one), and `docs/plugins/<id>.md`
+  (a page per plugin).
+
+`registry.json` and `index.json` are both generated from `plugins/` by
+`build.js`.
+
+## Index and docs URLs
+
+- Catalog: `https://raw.githubusercontent.com/ialameh/clixy-plugins/main/index.json`
+- Authoring guide: `https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/authoring-guide.md`
+- Authoring spec (for AI): `https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/authoring-spec.md`
 
 ## Add a plugin
 
@@ -44,7 +58,10 @@ Settings.
    }
    ```
 
-2. Rebuild `registry.json` so it includes your package:
+2. Optional: add a docs page at `docs/plugins/<your-id>.md` describing the
+   actions and config. When present, `index.json` links to it automatically.
+
+3. Rebuild `registry.json` and `index.json` so they include your package:
 
    ```bash
    npm run build
@@ -52,7 +69,7 @@ Settings.
 
    (or run `node build.js` directly)
 
-3. Open a pull request.
+4. Open a pull request.
 
 Use a unique reverse-DNS `id` (for example `com.yourname.example`). Installing a
 package replaces any installed plugin with the same `id`, which is how updates
@@ -60,6 +77,6 @@ work.
 
 ## Writing a plugin
 
-See the Clixy plugin docs. To have an AI assistant write one for you, paste the
-Clixy plugin authoring spec into it and describe what you want; it returns a
-package you can drop into `plugins/`.
+See `docs/authoring-guide.md` for the full guide. To have an AI assistant write a
+plugin for you, paste `docs/authoring-spec.md` into it and describe what you want;
+it returns a package you can drop into `plugins/`.
