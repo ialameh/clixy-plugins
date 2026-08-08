@@ -54,7 +54,10 @@ That is a complete plugin. The rest of this page explains what else you can do.
 - Your code runs once when the plugin loads, in its own Web Worker. Register your
   actions at the top level of the code, right away. Registration that happens
   later (for example inside a `setTimeout`) is not picked up.
-- Each registered action becomes a button in the sidebar AI Assistant panel.
+- Each registered action becomes a button in the sidebar AI Assistant panel, and
+  appears in the editor's right-click menu under the plugin's name. A plugin is
+  one entry there however many actions it registers, with the actions behind it,
+  so the menu stays short as more plugins are installed.
 - When you click the button, Clixy calls your action's `run` function with your
   selected text, or the whole document when nothing is selected, and waits for
   the string you return. You can return a string directly or a promise that
