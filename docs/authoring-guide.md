@@ -51,12 +51,16 @@ That is a complete plugin. The rest of this page explains what else you can do.
 
 ## How a plugin runs
 
+- After installing a plugin, Clixy names the actions it registered. A plugin
+  that loads but registers nothing says so, which is usually the fastest way to
+  spot a mistake in your code.
 - Your code runs once when the plugin loads, in its own Web Worker. Register your
   actions at the top level of the code, right away. Registration that happens
   later (for example inside a `setTimeout`) is not picked up.
-- Each registered action becomes a button in the sidebar AI Assistant panel, and
-  appears in the right-click menu under the plugin's name, in all three editing
-  modes. A plugin is one entry there however many actions it registers, with the
+- Each registered action appears in the launcher, which lists every action and
+  opens with Cmd or Ctrl and Shift and P, and in the right-click menu under the
+  plugin's name, in all three editing modes. The sidebar can list actions too,
+  but that is off by default. A plugin is one entry there however many actions it registers, with the
   actions behind it, so the menu stays short as more plugins are installed.
 - In the rendered modes (preview and WYSIWYG) an action receives the Markdown
   source behind what you selected, not the rendered text: select a word and your
