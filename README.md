@@ -29,6 +29,8 @@ Settings.
 - `templates.json`: the project template feed. Clixy reads it in the New Project
   form so you can start a project from a community template.
 - `plugins/`: the individual plugin packages, one JSON file each.
+- `src/`: readable source for the plugins whose code is long enough that reading
+  it inside a JSON string is unpleasant.
 - `templates/`: the individual project templates, one JSON file each.
 - `docs/`: `authoring-guide.md` (how to write a plugin), `authoring-spec.md`
   (paste into an AI assistant to have it write one), and `docs/plugins/<id>.md`

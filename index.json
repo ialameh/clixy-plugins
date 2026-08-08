@@ -15,6 +15,15 @@
       "docs": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/plugins/com.clixy.ai-chat.md"
     },
     {
+      "id": "com.siftwriter.craft",
+      "name": "SiftWriter",
+      "version": "1.0.0",
+      "author": "Sam Alameh",
+      "description": "Humanize, detect machine writing, and work a draft: sensory detail, show-not-tell, dialogue, pacing, plain language, and headlines.",
+      "package": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/plugins/siftwriter.clixy.json",
+      "docs": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/plugins/com.siftwriter.craft.md"
+    },
+    {
       "id": "com.clixy.writing-toolkit",
       "name": "Writing Toolkit",
       "version": "1.0.0",
