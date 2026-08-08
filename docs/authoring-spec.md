@@ -65,7 +65,9 @@ keyed by `key`.
 
 - `key`: required. The property you read from `clixy.config`.
 - `label`: required. Shown next to the input.
-- `type`: required. One of `string`, `number`, `boolean`, `select`.
+- `type`: required. One of `string`, `number`, `boolean`, `select`, `text`.
+  Use `text` when the value is more than one line, such as a pasted writing
+  sample; it renders as a textarea.
 - `default`: optional. Seeded when the plugin is installed.
 - `options`: the choices for a `select` field.
 

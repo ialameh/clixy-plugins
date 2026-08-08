@@ -152,7 +152,9 @@ Each field has this shape:
 
 - `key` (required): the property name you read from `clixy.config`.
 - `label` (required): what the Configure panel shows next to the input.
-- `type` (required): one of `string`, `number`, `boolean`, or `select`.
+- `type` (required): one of `string`, `number`, `boolean`, `select`, or `text`.
+  `text` is multi-line, for a pasted writing sample or word list; `string` is a
+  single line.
 - `default` (optional): the value seeded when the plugin is installed.
 - `options` (optional): the choices for a `select` field.
 
