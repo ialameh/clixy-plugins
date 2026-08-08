@@ -1,0 +1,22 @@
+{
+  "id": "memoir",
+  "name": "Memoir",
+  "type": "writing",
+  "description": "Chapters plus timeline, people, and theme notes for memoir writing.",
+  "entries": [
+    { "path": "chapters", "content": null },
+    { "path": "chapters/chapter-01.md", "content": "# Chapter 1\n\n" },
+    {
+      "path": "timeline.md",
+      "content": "# Timeline\n\nKey events in order, with dates as close as memory allows.\n"
+    },
+    {
+      "path": "people.md",
+      "content": "# People\n\nWho appears, their relationship to the story, and names to change.\n"
+    },
+    {
+      "path": "themes.md",
+      "content": "# Themes\n\nWhat {{name}} is really about, beneath the events.\n"
+    }
+  ]
+}

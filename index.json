@@ -1,6 +1,7 @@
 {
   "name": "Clixy community plugins",
   "registry": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/registry.json",
+  "templates": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/templates.json",
   "guide": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/authoring-guide.md",
   "spec": "https://raw.githubusercontent.com/ialameh/clixy-plugins/main/docs/authoring-spec.md",
   "plugins": [

@@ -105,12 +105,14 @@ clixy.registerAction({
 });
 ```
 
-- The prompt is sent as written, with Clixy's default system prompt, using the
-  model and key you configured in Settings. The key stays in the app; your plugin
-  never sees it.
-- Completions are capped at 1024 tokens.
-- At most 4 `clixy.ai` requests can be in flight at once. A fifth rejects with an
-  error until one finishes.
+- The prompt is sent as written, with no system prompt added, to whichever
+  backend you selected in Settings (OpenAI or Moonnox). The key stays in the app;
+  your plugin never sees it.
+- Completions are capped by the "AI tokens per call" setting (default 1024).
+  Raise it in Settings, Plugins when your model supports long outputs.
+- The number of `clixy.ai` requests that can be in flight at once is the
+  "Parallel AI calls" setting (default 4). One more than the limit rejects with
+  an error until a pending request finishes.
 
 ### clixy.config
 
@@ -308,14 +310,19 @@ A plugin cannot:
 
 ## Limits
 
-These bounds keep a buggy or heavy plugin from taking over the app:
+These bounds keep a buggy or heavy plugin from taking over the app. Each one is
+a setting under Settings, Plugins; the values below are the defaults:
 
-- A plugin must finish loading and registering within 5 seconds, or it is stopped
-  (for example, an accidental infinite loop at the top level).
-- A single action run must finish within 15 seconds, or it is abandoned.
-- An action's returned text is capped at 200,000 characters.
-- At most 4 `clixy.ai` requests can be pending at once, and each completion is
-  capped at 1024 tokens.
+- A plugin must finish loading and registering within the load timeout
+  (default 5 seconds), or it is stopped (for example, an accidental infinite
+  loop at the top level).
+- A single action run must finish within the run timeout (default 130 seconds),
+  or it is abandoned.
+- An action's returned text is capped by the output setting
+  (default 200,000 characters).
+- Pending `clixy.ai` requests are capped by the parallel-calls setting
+  (default 4), and each completion by the tokens-per-call setting
+  (default 1024).
 
 ## Troubleshooting
 
@@ -326,5 +333,5 @@ These bounds keep a buggy or heavy plugin from taking over the app:
   is shown in the sidebar. A common cause is calling a browser or Node API that
   does not exist in the worker.
 - An AI action fails with a key error: set your OpenAI key in Settings first.
-- Nothing happens for a long time: a run that exceeds 15 seconds is abandoned.
-  Check for a loop or an `await` that never resolves.
+- Nothing happens for a long time: a run that exceeds the run timeout is
+  abandoned. Check for a loop or an `await` that never resolves.

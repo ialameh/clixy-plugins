@@ -94,8 +94,9 @@ clixy.registerAction({
 
 - `run(text)` receives the selected text (or the whole document) as a string and
   must return a string, or a Promise that resolves to a string.
-- A non-string return is coerced with String(). Output is capped at 200000
-  characters.
+- A non-string return is coerced with String(). Output is capped by a user
+  setting, 200000 characters by default. Write for the default; you cannot know
+  the user's value.
 - Throwing or rejecting shows the error to the user and applies nothing.
 
 ### clixy.ai(prompt)
@@ -115,8 +116,14 @@ clixy.registerAction({
 });
 ```
 
-- Completions are capped at 1024 tokens.
-- At most 4 clixy.ai calls can be in flight at once; a 5th rejects.
+- Both the completion length and the number of concurrent calls are user
+  settings: 1024 tokens and 4 in-flight calls by default. Assume the defaults,
+  since you cannot read the user's settings. Going over the concurrency limit
+  rejects rather than queuing, so keep parallel calls to 4 or fewer, or run them
+  in sequence.
+- For output longer than one completion allows, split the work into several
+  sequential clixy.ai calls and join the results, rather than asking for one
+  long reply that gets truncated.
 - Put your full instruction in the prompt string. Ask the model to return only the
   result text, so nothing extra leaks into the document.
 
@@ -139,8 +146,10 @@ fails:
 - No file or module access: do not use `import`, `export`, `require`, or
   `importScripts`. Do not reference external libraries or URLs. Write everything
   inline in the one code string.
-- Register all actions synchronously at the top level. The plugin must finish
-  loading within 5 seconds, and each run within 15 seconds.
+- Register all actions synchronously at the top level. Loading and running both
+  have user-set time limits, 5 seconds to load and 130 seconds per run by
+  default. Registration is cheap, so the load limit only bites on an accidental
+  top-level loop; the run limit is what bounds a chain of AI calls.
 
 ## Output requirements, restated
 

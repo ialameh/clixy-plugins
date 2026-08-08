@@ -1,0 +1,25 @@
+{
+  "id": "knowledge-base",
+  "name": "Knowledge base",
+  "type": "documentation",
+  "description": "An index, topic pages, a glossary, and an inbox for team or personal knowledge.",
+  "entries": [
+    {
+      "path": "index.md",
+      "content": "# {{name}}\n\nStart here: what this knowledge base covers and how it is organised.\n"
+    },
+    { "path": "topics", "content": null },
+    {
+      "path": "topics/example-topic.md",
+      "content": "# Example topic\n\nOne page per topic. Keep the answer at the top, detail below.\n"
+    },
+    {
+      "path": "glossary.md",
+      "content": "# Glossary\n\nTerms and their meanings, alphabetical.\n"
+    },
+    {
+      "path": "inbox.md",
+      "content": "# Inbox\n\nUnsorted notes land here. File them into topics/ when processed.\n"
+    }
+  ]
+}
