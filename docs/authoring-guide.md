@@ -55,9 +55,15 @@ That is a complete plugin. The rest of this page explains what else you can do.
   actions at the top level of the code, right away. Registration that happens
   later (for example inside a `setTimeout`) is not picked up.
 - Each registered action becomes a button in the sidebar AI Assistant panel, and
-  appears in the editor's right-click menu under the plugin's name. A plugin is
-  one entry there however many actions it registers, with the actions behind it,
-  so the menu stays short as more plugins are installed.
+  appears in the right-click menu under the plugin's name, in all three editing
+  modes. A plugin is one entry there however many actions it registers, with the
+  actions behind it, so the menu stays short as more plugins are installed.
+- In the rendered modes (preview and WYSIWYG) an action receives the Markdown
+  source behind what you selected, not the rendered text: select a word and your
+  action sees that word, select across bold or a link and it sees the whole
+  paragraph including its syntax. Whatever it receives is exactly what a result
+  replaces, so an action is never run on one piece of text and applied to
+  another.
 - When you click the button, Clixy calls your action's `run` function with your
   selected text, or the whole document when nothing is selected, and waits for
   the string you return. You can return a string directly or a promise that
