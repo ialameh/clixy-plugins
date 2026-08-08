@@ -42,4 +42,5 @@ Click the sliders icon next to the plugin to set:
 ## Notes
 
 AI actions run through Clixy, so the model and key come from your Settings and the
-plugin never sees the key. Each completion is capped at 1024 tokens.
+plugin never sees the key. Each completion is capped by the "AI tokens per call"
+setting, 1024 by default. On a long selection, raise it in Settings, Plugins.

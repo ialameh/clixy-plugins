@@ -1,0 +1,21 @@
+{
+  "id": "blog",
+  "name": "Blog",
+  "type": "writing",
+  "description": "A posts folder, an ideas backlog, and a style guide for running a blog.",
+  "entries": [
+    { "path": "posts", "content": null },
+    {
+      "path": "posts/first-post.md",
+      "content": "# First post\n\nWhat this blog is about and who it is for.\n"
+    },
+    {
+      "path": "ideas.md",
+      "content": "# Post ideas\n\nOne idea per line. Promote an idea to a draft in posts/ when it earns it.\n"
+    },
+    {
+      "path": "style-guide.md",
+      "content": "# {{name}} style guide\n\nVoice, tone, formatting rules, and words to avoid.\n"
+    }
+  ]
+}

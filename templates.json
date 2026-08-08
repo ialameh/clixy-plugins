@@ -1,0 +1,85 @@
+{
+  "name": "Clixy community templates",
+  "templates": [
+    {
+      "id": "blog",
+      "name": "Blog",
+      "type": "writing",
+      "description": "A posts folder, an ideas backlog, and a style guide for running a blog.",
+      "entries": [
+        {
+          "path": "posts",
+          "content": null
+        },
+        {
+          "path": "posts/first-post.md",
+          "content": "# First post\n\nWhat this blog is about and who it is for.\n"
+        },
+        {
+          "path": "ideas.md",
+          "content": "# Post ideas\n\nOne idea per line. Promote an idea to a draft in posts/ when it earns it.\n"
+        },
+        {
+          "path": "style-guide.md",
+          "content": "# {{name}} style guide\n\nVoice, tone, formatting rules, and words to avoid.\n"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-base",
+      "name": "Knowledge base",
+      "type": "documentation",
+      "description": "An index, topic pages, a glossary, and an inbox for team or personal knowledge.",
+      "entries": [
+        {
+          "path": "index.md",
+          "content": "# {{name}}\n\nStart here: what this knowledge base covers and how it is organised.\n"
+        },
+        {
+          "path": "topics",
+          "content": null
+        },
+        {
+          "path": "topics/example-topic.md",
+          "content": "# Example topic\n\nOne page per topic. Keep the answer at the top, detail below.\n"
+        },
+        {
+          "path": "glossary.md",
+          "content": "# Glossary\n\nTerms and their meanings, alphabetical.\n"
+        },
+        {
+          "path": "inbox.md",
+          "content": "# Inbox\n\nUnsorted notes land here. File them into topics/ when processed.\n"
+        }
+      ]
+    },
+    {
+      "id": "memoir",
+      "name": "Memoir",
+      "type": "writing",
+      "description": "Chapters plus timeline, people, and theme notes for memoir writing.",
+      "entries": [
+        {
+          "path": "chapters",
+          "content": null
+        },
+        {
+          "path": "chapters/chapter-01.md",
+          "content": "# Chapter 1\n\n"
+        },
+        {
+          "path": "timeline.md",
+          "content": "# Timeline\n\nKey events in order, with dates as close as memory allows.\n"
+        },
+        {
+          "path": "people.md",
+          "content": "# People\n\nWho appears, their relationship to the story, and names to change.\n"
+        },
+        {
+          "path": "themes.md",
+          "content": "# Themes\n\nWhat {{name}} is really about, beneath the events.\n"
+        }
+      ]
+    }
+  ]
+}
